@@ -1,0 +1,11 @@
+<!--pages/home/home.wxml-->
+<image class='movie-image' src='{{hotMovie.image}}' mode='aspectFit' bindtap='onTapMovieDetail'></image>
+
+<view class='movie-title'>{{hotMovie.title}}</view>
+
+<view class='recommend-review'>**给你推荐了一部电影</view>
+
+<view class='opr-cnt'>
+  <navigator class='to-hot-movie' url='/pages/hot/hot'>热门</navigator>
+  <navigator class='to-user' url='/pages/user/user'>我的</navigator>
+</view>
