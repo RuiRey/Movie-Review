@@ -1,1 +1,29 @@
 /* pages/hot/hot.wxss */
+.movie-item{
+  display: flex;
+  margin: 30rpx;
+  background: white;
+  box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.02);
+  border-radius: 13rpx;
+  height: 300rpx;
+}
+.movie-image{
+  max-width: 228rpx;
+  height: 300rpx;
+}
+
+.movie-info{
+  margin-left: 35rpx;
+  margin-top: 80rpx;
+}
+.movie-title{
+  font-weight: 900;
+  font-size: 36rpx;
+  line-height: 50rpx;
+}
+.movie-category{
+  margin-top: 40rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: lightslategray;
+}

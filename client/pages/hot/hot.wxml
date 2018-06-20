@@ -1,2 +1,12 @@
 <!--pages/hot/hot.wxml-->
-<text>pages/hot/hot.wxml</text>
+<scroll-view scroll-y>
+  <navigator class='movie-item' wx:for="{{movieList}}" wx:key="id" wx:for-item="item"  url="/pages/movieDetail/movieDetail?id={{item.id}}">
+    <image class='movie-image' src='{{item.image}}' mode='scaleToFill'></image>
+    <view class='movie-info'>
+      <view class='movie-title'>{{item.title}}</view>
+      <view class='movie-category'>{{item.category}}</view>
+    </view>
+    
+  </navigator>
+</scroll-view>
+
