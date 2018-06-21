@@ -25,12 +25,18 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "热门电影",
 					"pathName": "pages/hot/hot",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/user/user",
 					"query": ""
 				}
 			]

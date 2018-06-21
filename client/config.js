@@ -24,7 +24,10 @@ var config = {
         uploadUrl: `${host}/weapp/upload`,
 
         //获取热门电影列表
-        movieList: `${host}/weapp/movies`
+        movieList: `${host}/weapp/movies`,
+
+        // 拉取用户信息
+        user: `${host}/weapp/user`,
     }
 };
 

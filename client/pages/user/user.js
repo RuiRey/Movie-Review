@@ -1,3 +1,4 @@
+const app = getApp()
 // pages/user/user.js
 Page({
 
@@ -5,7 +6,26 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    userInfo: null,
+    reviewType: ['发布的影评', '收藏的影评'],
+    index: 0,
+  },
+
+  bindPickerChange: function (e) {
+    //console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
+  },
+
+  onTapLogin() {
+    app.login({
+      success: ({ userInfo }) => {
+        this.setData({
+          userInfo
+        })
+      }
+    })
   },
 
   /**
@@ -26,7 +46,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    app.checkSession({
+      success: ({ userInfo }) => {
+        this.setData({
+          userInfo
+        })
+      }
+    })
   },
 
   /**

@@ -1,1 +1,71 @@
 /* pages/user/user.wxss */
+.unlogin-card{
+  display: flex;
+  align-items: center;
+  margin: 50rpx 27rpx 0;
+  height: 200rpx;
+  background: white;
+  box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.02);
+  border-radius: 13rpx;
+  text-align: center;
+}
+.unlogin-info{
+  flex: 1;
+}
+.unlogin-text{
+  font-size: 34rpx;
+  line-height: 48rxp;
+  font-weight: bold;
+  color: rgba(29, 29, 38, 0.8);
+}
+.unlogin-tips{
+  margin-top: 15rpx;
+  font-size: 24rpx;
+  line-height: 33rpx;
+  color: lightslategray;
+}
+.unlogin-btn{
+  margin: 34rpx auto 0;
+  width: 250rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  background: white;
+  text-align: center;
+  border-radius: 10rpx;
+  color: lightslategray;
+  font-weight: bold;
+}
+
+.picker{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 100rpx;
+}
+.picker-text{
+  font-size: 32rpx;
+  line-height: 45rpx;
+  font-weight: bold;
+  margin-right: 10rpx;
+}
+.picker-image{
+  width:30rpx;
+  height: 19rpx;
+}
+
+
+.goHome{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: bold;
+  background: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  color: lightgray;
+}

@@ -1,2 +1,24 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<view wx:if="{{!userInfo}}">
+  <view class='unlogin-card'>
+    <view class='unlogin-info'>
+      <view class='unlogin-text'>未登录</view>
+      <view class='unlogin-tips'>点击微信登陆后可查看评论</view>
+    </view>
+  </view>
+  <button class="unlogin-btn" open-type="getUserInfo" bindgetuserinfo="onTapLogin">微信登录</button>
+</view>
+
+<view wx:else>
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{reviewType}}">
+    <view class='picker'>
+      <view class="picker-text">
+        {{reviewType[index]}}
+      </view>
+      <image class='picker-image' src='/images/down-arrow.png'></image>
+      </view>
+    </picker>
+</view>
+
+
+<navigator class='goHome' url='/pages/home/home'>回到首页</navigator>
