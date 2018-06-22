@@ -8,8 +8,28 @@
   text-align: center;
 }
 .recommend-review{
-  text-align: center;
-  margin-top: 35rpx;
+  justify-content: center;
+  margin-top: 15rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  display: flex;
+  align-items: center;
+}
+.user-head{
+  flex-shrink: 0;
+  margin-left: 53rpx;
+  background: #f5e069;
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+}
+.user-name{
+  color: lightslategray;
+  margin: 0 31rpx;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 28rpx;
   line-height: 40rpx;
 }

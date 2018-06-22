@@ -8,7 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    hotMovie:{}
+    hotMovie:{},
+    randomReview: {}
   },
 
   /**
@@ -16,6 +17,43 @@ Page({
    */
   onLoad: function (options) {
     this.getMovieList()
+    
+    this.getRandomReview(1)
+  },
+
+  getRandomReview(movieId) {
+    qcloud.request({
+      url: config.service.reviewList,
+      success: result => {
+        let data = result.data
+        if (!data.code) {
+          let reviews = data.data
+          let reviewList = []
+          for (let i = 0; i < reviews.length; i++) {
+            if (reviews[i].movie_id == movieId) {
+              reviewList.push(reviews[i])
+            }
+          } 
+          let l = reviewList.length
+          let randomReview = reviewList[Math.floor(Math.random() * l)]
+          this.setData({
+            randomReview: randomReview
+          })
+          console.log(this.data.randomReview)
+        } else {
+          wx.showToast({
+            title: '影评数据加载失败',
+            icon: 'none'
+          })
+        }
+      },
+      fail: () => {
+        wx.showToast({
+          title: '影评数据加载失败',
+          icon: 'none'
+        })
+      }
+    })
   },
 
   getMovieList(){
