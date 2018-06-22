@@ -6,6 +6,6 @@
 
   <view class='opr-cnt'>
     <navigator class='to-review-list' url='/pages/reviewList/reviewList'>查看影评</navigator>
-    <view class='add-review-btn'>添加影评</view>
+    <view class='add-review-btn' bindtap='onTapAddReview'>添加影评</view>
   </view>
 </view>

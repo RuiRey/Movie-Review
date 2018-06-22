@@ -1,49 +1,28 @@
 const app = getApp()
-// pages/movieDetail/movieDetail.js
 const qcloud = require('../../vendor/wafer2-client-sdk/index')
 const config = require('../../config.js')
+// pages/previewReview/previewReview.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    movieDetail:{},
+    reviewValue: "",
     userInfo: null,
+    movieDetail:{},
+    reviewAudio: null
   },
-
-  onTapAddReview(e){
-    let userInfo = this.data.userInfo
-    let movieDetail = this.data.movieDetail
-    if(!userInfo){
-      wx.navigateTo({
-        url: '/pages/user/user',
-      })
-    }else{
-      wx.showActionSheet({
-        itemList: ['文字', '音频'],
-        success: function (res) {
-          wx.navigateTo({
-            url: '/pages/editReview/editReview?tapIndex='+res.tapIndex + '&&movieId=' + movieDetail.id,
-          })
-        },
-        fail: function (res) {
-          console.log(res.errMsg)
-        }
-      })
-      
-    }
-  },
-
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMovieDetail(options.id)
+      this.getReviewValue()
+      this.getMovieDetail(options.movieId)
   },
 
-  getMovieDetail(id){
+  getMovieDetail(id) {
     wx.showLoading({
       title: '电影数据加载中'
     })
@@ -56,8 +35,8 @@ Page({
         let data = result.data
         if (!data.code) {
           let movieList = data.data
-          for (let i = 0; i < movieList.length; i++){
-            if(movieList[i].id == id){
+          for (let i = 0; i < movieList.length; i++) {
+            if (movieList[i].id == id) {
               this.setData({
                 movieDetail: movieList[i]
               })
@@ -79,6 +58,22 @@ Page({
         })
       }
     })
+  },
+
+  getReviewValue(){
+    let that = this
+    wx.getStorage({
+      key: 'reviewValue',
+      success: function (res) {
+        that.setData({
+          reviewValue: res.data,
+        })
+      }
+    })
+  },
+
+  onTapEdit(){
+    wx.navigateBack()
   },
 
   /**
@@ -134,5 +129,56 @@ Page({
    */
   onShareAppMessage: function () {
   
-  }
+  },
+  //上传影评
+  uploadReview(event) {
+    let username = this.data.userInfo.nickName
+    let content = this.data.reviewValue
+    if (!content) return
+    let movie_id = this.data.movieDetail.id
+
+    wx.showLoading({
+      title: '正在发表评论'
+    })
+
+    qcloud.request({
+      url: config.service.uploadReview,
+      login: true,
+      method: 'PUT',
+      data:{
+        content: content,
+        movie_id: movie_id,
+        username: username
+      },
+      success: result => {
+        wx.hideLoading()
+
+        let data = result.data
+
+        if (!data.code) {
+          wx.showToast({
+            title: '发表评论成功'
+          })
+          setTimeout(() => {
+            wx.navigateBack()
+          }, 1500)
+
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '发表评论失败！！！'
+          })
+        }
+      },
+      fail: (res) => {
+        wx.hideLoading()
+        console.log(res)
+        wx.showToast({
+          icon: 'none',
+          title: '发表评论失败'
+        })
+      }
+    })
+  },
+
 })

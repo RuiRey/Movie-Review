@@ -1,0 +1,14 @@
+<!--pages/previewReview/previewReview.wxml-->
+<view class='movie-card'>
+  <image class='movie-image' src='{{movieDetail.image}}'></image>
+  <view class='movie-title'>{{movieDetail.title}}</view>
+  <view class='user-info'>
+    <image class='user-head' src='{{userInfo.avatarUrl}}'></image>
+    <view class='user-name'>{{userInfo.nickName}}的影评</view>
+  </view>
+  <view class='movie-review'>{{reviewValue}}</view>
+  <view class='opr-cnt'>
+    <view class='back-to-edit-review' bindtap='onTapEdit'>重新编辑</view>
+    <view class='upload-review' bindtap='uploadReview'>发布影评</view>
+  </view>
+</view>

@@ -80,16 +80,21 @@ App({
     },
 
     checkSession({ success, error }) {
+      wx.showLoading({
+        title: '数据载入中',
+      })
       if (userInfo) {
+        wx.hideLoading()
         return success && success({
           userInfo
         })
       }
-
+      
       wx.checkSession({
         success: () => {
           this.getUserInfo({
             success: res => {
+              wx.hideLoading()
               userInfo = res.userInfo
 
               success && success({
@@ -97,11 +102,13 @@ App({
               })
             },
             fail: () => {
+              wx.hideLoading()
               error && error()
             }
           })
         },
         fail: () => {
+          wx.hideLoading()
           error && error()
         }
       })

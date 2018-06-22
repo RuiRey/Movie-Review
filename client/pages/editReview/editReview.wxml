@@ -1,2 +1,11 @@
 <!--pages/editReview/editReview.wxml-->
-<text>pages/editReview/editReview.wxml</text>
+<view class='review-card'>
+  <image class='movie-image' src='{{movieDetail.image}}'></image>
+  <view class='movie-title'>{{movieDetail.title}}</view>
+  <view wx:if="{{tapIndex === '0'}}" class='review'>
+    <textarea class='review-inp' placeholder-class='review-placeholder' placeholder='输入你的影评内容...' auto-focus maxlength='255' bindinput='onInput'></textarea>
+  </view>
+  <view wx:if="{{tapIndex === '1'}}" class='audio-inp'>录音</view>
+</view>
+
+<button class='finish-edit' type="primary" size="defalut" bindtap="onTapFinishEdit"> 完成 </button>

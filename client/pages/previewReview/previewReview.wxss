@@ -1,4 +1,4 @@
-/* pages/movieDetail/movieDetail.wxss */
+/* pages/previewReview/previewReview.wxss */
 .movie-card{
   background: white;
   margin: 100rpx 30rpx 50rpx 30rpx;
@@ -17,16 +17,14 @@
   font-size: 36rpx;
   line-height: 50rpx;
 }
-.movie-description{
-  
+.movie-review{
   font-size: 28rpx;
   line-height: 40rpx;
   color: lightslategray;
   width: 550rpx;
-  margin-top: 40rpx;
+  margin-top: 20rpx;
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 80rpx;
 }
 
 .opr-cnt{
@@ -34,11 +32,11 @@
   align-items: center;
   color: lightslategray;
   justify-content: space-around;
-  margin-top: 50rpx;
+  margin-top: 80rpx;
   padding-bottom: 50rpx;
 }
 
-.to-review-list, .add-review-btn{
+.back-to-edit-review, .upload-review{
   height: 80rpx;
   line-height: 80rpx;
   text-align: center;
@@ -47,4 +45,27 @@
   box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.02);
   border-radius: 13rpx;
   padding: 0 50rpx;
+}
+
+.user-info{
+  display: flex;
+  align-items: center;
+  margin-top: 80rpx;
+}
+.user-head{
+  flex-shrink: 0;
+  margin-left: 53rpx;
+  background: #f5e069;
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+}
+.user-name{
+  margin: 0 31rpx;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+  line-height: 40rpx;
 }

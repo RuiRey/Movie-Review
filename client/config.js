@@ -28,6 +28,9 @@ var config = {
 
         // 拉取用户信息
         user: `${host}/weapp/user`,
+
+        //上传影评
+        uploadReview: `${host}/weapp/review`,
     }
 };
 

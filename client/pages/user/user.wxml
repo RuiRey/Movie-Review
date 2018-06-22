@@ -3,7 +3,7 @@
   <view class='unlogin-card'>
     <view class='unlogin-info'>
       <view class='unlogin-text'>未登录</view>
-      <view class='unlogin-tips'>点击微信登陆后可查看评论</view>
+      <view class='unlogin-tips'>点击微信登陆后可查看或添加评论</view>
     </view>
   </view>
   <button class="unlogin-btn" open-type="getUserInfo" bindgetuserinfo="onTapLogin">微信登录</button>
