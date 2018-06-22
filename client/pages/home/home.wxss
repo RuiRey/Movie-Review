@@ -17,15 +17,15 @@
 }
 .user-head{
   flex-shrink: 0;
-  margin-left: 53rpx;
+  margin-left: 30rpx;
   background: #f5e069;
-  width: 70rpx;
-  height: 70rpx;
+  width: 65rpx;
+  height: 65rpx;
   border-radius: 50%;
 }
 .user-name{
   color: lightslategray;
-  margin: 0 31rpx;
+  margin: 0 20rpx;
   font-weight: bold;
   white-space: nowrap;
   overflow: hidden;

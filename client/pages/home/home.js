@@ -39,7 +39,6 @@ Page({
           this.setData({
             randomReview: randomReview
           })
-          console.log(this.data.randomReview)
         } else {
           wx.showToast({
             title: '影评数据加载失败',
