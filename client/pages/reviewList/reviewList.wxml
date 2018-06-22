@@ -1,2 +1,25 @@
 <!--pages/reviewList/reviewList.wxml-->
-<text>pages/reviewList/reviewList.wxml</text>
+
+<view wx:if="{{reviewList.length === 0}}" class='review-card'>
+  <view class='empty-review-info'>
+    <view class='empty-review-text'>目前影评列表为空</view>
+    <view class='empty-review-tips'>快来添加第一条影评吧！！！</view>
+  </view>
+  <view class="add-review-btn" bindtap='onTapAddReview'>添加影评</view>
+</view>
+
+<scroll-view class='review' scroll-y wx:else>
+  <navigator url='/pages/reviewDetail/reviewDetail?reviewId={{item.id}}&&movieId={{item.movie_id}}' class='review-card' wx:for="{{reviewList}}" wx:key='id'>
+    <view class='reviewer-info'>
+      <image class='reviewer-head' src='{{item.avatar}}'></image>
+      <view class='reviewer-name'>{{item.username}}</view>
+    </view>  
+    <view wx:if='{{item.content}}' class='review-content'>{{item.content}}</view>
+  </navigator>
+</scroll-view>
+
+
+
+
+
+<navigator class='goHome' url='/pages/home/home'>回到首页</navigator>

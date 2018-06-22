@@ -1,2 +1,14 @@
 <!--pages/reviewDetail/reviewDetail.wxml-->
-<text>pages/reviewDetail/reviewDetail.wxml</text>
+<view class='movie-card'>
+  <image class='movie-image' src='{{movieDetail.image}}'></image>
+  <view class='movie-title'>{{movieDetail.title}}</view>
+  <view class='user-info'>
+    <image class='user-head' src='{{reviewDetail.avatar}}'></image>
+    <view class='user-name'>{{reviewDetail.username}}的影评</view>
+  </view>
+  <view wx:if="reviewDetail.content" class='movie-review'>{{reviewDetail.content}}</view>
+  <view class='opr-cnt'>
+    <view class='collent-review'  >收藏影评</view>
+    <view class='add-review' bindtap='onTapAddReview'>写影评</view>
+  </view>
+</view>

@@ -38,4 +38,7 @@ router.get('/movies', controllers.movies.movieList)
 //上传影评
 router.put('/review', validationMiddleware, controllers.review.add)
 
+//获取影评列表
+router.get('/review', controllers.review.reviewList)
+
 module.exports = router

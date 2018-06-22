@@ -15,4 +15,7 @@ module.exports = {
 
     ctx.state.data = {}
   },
+  reviewList: async ctx => {
+    ctx.state.data = await DB.query("SELECT * FROM review;")
+  },
 }

@@ -21,10 +21,10 @@
   font-size: 28rpx;
   line-height: 40rpx;
   color: lightslategray;
-  width: 550rpx;
   margin-top: 20rpx;
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 80rpx;
+  margin-right: 80rpx;
+  word-break:break-all;
 }
 
 .opr-cnt{

@@ -27,9 +27,7 @@ Page({
             url: '/pages/editReview/editReview?tapIndex='+res.tapIndex + '&&movieId=' + movieDetail.id,
           })
         },
-        fail: function (res) {
-          console.log(res.errMsg)
-        }
+        fail: () => { }
       })
       
     }

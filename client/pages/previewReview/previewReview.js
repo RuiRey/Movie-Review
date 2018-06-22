@@ -159,9 +159,9 @@ Page({
           wx.showToast({
             title: '发表评论成功'
           })
-          setTimeout(() => {
-            wx.navigateBack()
-          }, 1500)
+          wx.navigateTo({
+            url: '/pages/reviewList/reviewList?movieId=' + movie_id,
+          })
 
         } else {
           wx.showToast({

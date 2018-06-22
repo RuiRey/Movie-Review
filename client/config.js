@@ -31,6 +31,9 @@ var config = {
 
         //上传影评
         uploadReview: `${host}/weapp/review`,
+
+        //获取影评列表
+        reviewList: `${host}/weapp/review`,
     }
 };
 
