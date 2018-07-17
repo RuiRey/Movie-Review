@@ -16,8 +16,12 @@ Page({
   onLoad: function (options) {
     this.getMovieList()
   },
+  // 刷新页面
+  onPullDownRefresh() {
+    this.getMovieList(() => wx.stopPullDownRefresh())
+  },
 
-  getMovieList() {
+  getMovieList(callback) {
     wx.showLoading({
       title: '电影数据加载中'
     })
@@ -45,6 +49,11 @@ Page({
           title: '电影数据加载失败',
           icon: 'none'
         })
+      },
+      complete: () => {
+        wx.hideLoading();//loading 逻辑
+        console.log('here')
+        callback && callback()
       }
     })
   },
@@ -74,13 +83,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
   
   },
 

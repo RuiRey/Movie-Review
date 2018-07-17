@@ -17,11 +17,15 @@ Page({
    */
   onLoad: function (options) {
     this.getMovieList()
-    
-    this.getRandomReview(1)
+    this.getRandomReview()
   },
 
-  getRandomReview(movieId) {
+  // 刷新页面
+  onPullDownRefresh() {
+    this.getRandomReview(() => wx.stopPullDownRefresh())
+  },
+
+  getRandomReview(callback) {
     qcloud.request({
       url: config.service.reviewList,
       success: result => {
@@ -30,7 +34,7 @@ Page({
           let reviews = data.data
           let reviewList = []
           for (let i = 0; i < reviews.length; i++) {
-            if (reviews[i].movie_id == movieId) {
+            if (reviews[i].movie_id == 1) {
               reviewList.push(reviews[i])
             }
           } 
@@ -51,6 +55,9 @@ Page({
           title: '影评数据加载失败',
           icon: 'none'
         })
+      },
+      complete: () => {
+        callback && callback()
       }
     })
   },
@@ -118,13 +125,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
   
   },
 

@@ -10,17 +10,27 @@ Page({
   data: {
     reviewList:[],
     userInfo :null,
-    movieId: ""
+    movieId: "",
+    optionsMovieId: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      optionsMovieId: options.movieId
+    })
     this.getReviewList(options.movieId)
   },
 
-  getReviewList(movieId) {
+  // 刷新页面
+  onPullDownRefresh() {
+    let optionsMovieId = this.data.optionsMovieId
+    this.getReviewList(optionsMovieId ,() => wx.stopPullDownRefresh())
+  },
+
+  getReviewList(movieId, callback) {
     wx.showLoading({
       title: '影评数据加载中'
     })
@@ -57,6 +67,10 @@ Page({
           title: '影评数据加载失败',
           icon: 'none'
         })
+      },
+      complete: () => {
+        wx.hideLoading();//loading 逻辑
+        callback && callback()
       }
     })
   },
@@ -113,13 +127,6 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
   
   },
 
