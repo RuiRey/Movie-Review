@@ -69,3 +69,60 @@
   border-top: 1px solid rgba(0, 0, 0, 0.05);
   color: lightgray;
 }
+
+.movie-item{
+  display: flex;
+  margin: 30rpx;
+  background: white;
+  box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.02);
+  border-radius: 13rpx;
+  height: 300rpx;
+}
+.movie-image{
+  max-width: 228rpx;
+  height: 300rpx;
+}
+.movie-info{
+  margin-left: 35rpx;
+  margin-top: 35rpx;
+}
+.movie-title{
+  font-weight: 900;
+  font-size: 30rpx;
+  line-height: 42rpx;
+}
+.movie-review{
+  width: 350rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: initial;
+  margin-top: 20rpx;
+  font-size: 25rpx;
+  line-height: 35rpx;
+}
+
+.reviewer-info{
+  padding-top: 30rpx;
+  display: flex;
+  align-items: center;
+}
+.reviewer-name{
+  margin-left: 15rpx;
+  font-size: 25rpx;
+  line-height: 35rpx;
+  color: lightslategray;
+}
+.reviewer-head{
+  flex-shrink: 0;
+  background: #F8F8FF;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+
+.movie-item:last-child{
+  margin-bottom: 120rpx;
+}
+.movie-item:first-child{
+  margin-top: 100rpx;
+}

@@ -18,7 +18,24 @@
       <image class='picker-image' src='/images/down-arrow.png'></image>
       </view>
     </picker>
+
+    <scroll-view scroll-y>
+      <navigator class='movie-item' wx:for="{{myReviewList}}" wx:key="id" wx:for-item="item"  url="/pages/reviewDetail/reviewDetail?reviewId={{item.id}}&&movieId={{item.movie_id}}">
+        <image class='movie-image' src='{{movieList[item.movie_id-1].image}}' mode='scaleToFill'></image> 
+        <view class='movie-info'>
+          <view class='movie-title'>{{movieList[item.movie_id-1].title}}</view>
+          <view class='movie-review'>{{item.content}}</view>
+          <view class='reviewer-info'>
+            <image class='reviewer-head' src='{{item.avatar}}'></image>
+            <view class='reviewer-name'>{{item.username}}</view>
+          </view>  
+        </view>
+        
+      </navigator>
+    </scroll-view>
+
 </view>
+
 
 
 <navigator class='goHome' url='/pages/home/home'>回到首页</navigator>
