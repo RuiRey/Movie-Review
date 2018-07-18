@@ -41,4 +41,10 @@ router.put('/review', validationMiddleware, controllers.review.add)
 //获取影评列表
 router.get('/review', controllers.review.reviewList)
 
+//上传收藏的影评
+router.put('/collectedReview', validationMiddleware, controllers.collectedReview.collect)
+
+//获取收藏的影片列表
+router.get('/collectedReview', validationMiddleware, controllers.collectedReview.collectedReviewList)
+
 module.exports = router

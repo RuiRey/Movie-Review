@@ -12,13 +12,15 @@ Page({
     reviewType: ['发布的影评', '收藏的影评'],
     index: 0,
     movieList: {},
-    myReviewList:[]
+    reviewList:{},
+    myReviewList:[],
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.getMovieList()
+    this.getReviewList()
   },
 
   getMovieList() {
@@ -35,46 +37,80 @@ Page({
     })
   },
 
-  getMyReviewList() {
-    wx.showLoading({
-      title: '影评数据加载中'
-    })
-
+  getReviewList() {
     qcloud.request({
       url: config.service.reviewList,
       success: result => {
-        wx.hideLoading()
-
         let data = result.data
-        let userId = this.data.userInfo.openId
-        let myReviewList = []
         if (!data.code) {
-          let reviews = data.data
-          for (let i = 0; i < reviews.length; i++) {
-            if (reviews[i].user == userId) {
-              myReviewList.push(reviews[i])
-            }
-          }
           this.setData({
-            myReviewList: myReviewList
-          })
-        } else {
-          wx.showToast({
-            title: '影评数据加载失败',
-            icon: 'none'
+            reviewList: data.data
           })
         }
-      },
-      fail: () => {
-        wx.hideLoading()
-        wx.showToast({
-          title: '影评数据加载失败',
-          icon: 'none'
-        })
       }
     })
   },
 
+  getMyReviewList() {
+
+    let myReviewList = []
+    let userId = this.data.userInfo.openId
+    let reviewList = this.data.reviewList
+    let index = this.data.index
+    
+    if(index == 0){
+      for (let i = 0; i < reviewList.length; i++) {
+        if (reviewList[i].user == userId) {
+          myReviewList.push(reviewList[i])
+        }
+      }
+      this.setData({
+        myReviewList: myReviewList
+      })
+    }else{
+      qcloud.request({
+        url: config.service.collectedReviewList,
+        success: result => {
+          let data = result.data
+          let myCollectedReviewList = []
+          if (!data.code) {
+            let collectedReview = data.data
+            for (let i = 0; i < collectedReview.length; i++) {
+              if (collectedReview[i].user_id == userId) {
+                myCollectedReviewList.push(collectedReview[i])
+              }
+            }
+            for(let i = 0; i<myCollectedReviewList.length; i++){
+              myReviewList.push(reviewList[myCollectedReviewList[i].review_id-1])
+            }
+            this.setData({
+              myReviewList: myReviewList
+            })
+          }
+        }
+      })
+    }
+  },
+
+  getMyCollectedReviewList(){
+    qcloud.request({
+      url: config.service.collectedReviewList,
+      success: result => {
+        wx.hideLoading()
+        let data = result.data
+        let userId = this.data.userInfo.openId
+        let myCollectedReviewList = []
+        if (!data.code) {
+          let collectedReview = data.data
+          for (let i = 0; i < collectedReview.length; i++) {
+            if (collectedReview[i].user == userId) {
+              myCollectedReviewList.push(collectedReview[i])
+            }
+          }
+        }
+      }
+    })
+  },
 
 
 

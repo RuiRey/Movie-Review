@@ -85,7 +85,6 @@ Page({
     })
   },
 
-
   getMovieDetail(movieId) {
     wx.showLoading({
       title: '电影数据加载中'
@@ -120,6 +119,42 @@ Page({
         wx.showToast({
           title: '电影数据加载失败',
           icon: 'none'
+        })
+      }
+    })
+  },
+
+  onTapCollectReview(event) {
+    let review_id = this.data.reviewId
+
+    qcloud.request({
+      url: config.service.collectReview,
+      login: true,
+      method: 'PUT',
+      data: {
+        review_id: review_id
+      },
+      success: result => {
+        let data = result.data
+
+        if (!data.code) {
+          wx.showToast({
+            icon: 'success',
+            title: '影评收藏成功'
+          })
+        } else {
+          wx.showToast({
+            icon: 'none',
+            title: '影评收藏失败！！！'
+          })
+        }
+      },
+      fail: (res) => {
+        wx.hideLoading()
+        console.log(res)
+        wx.showToast({
+          icon: 'none',
+          title: '影评收藏失败'
         })
       }
     })

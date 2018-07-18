@@ -34,6 +34,13 @@ var config = {
 
         //获取影评列表
         reviewList: `${host}/weapp/review`,
+
+        //上传收藏影评
+        collectReview: `${host}/weapp/collectedReview`,
+
+        //获取收藏影评列表
+        collectedReviewList: `${host}/weapp/collectedReview`,
+
     }
 };
 

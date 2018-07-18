@@ -8,7 +8,7 @@
   </view>
   <view wx:if="reviewDetail.content" class='movie-review'>{{reviewDetail.content}}</view>
   <view class='opr-cnt'>
-    <view class='collent-review'  >收藏影评</view>
+    <view class='collent-review' bindtap='onTapCollectReview'  >收藏影评</view>
     <view class='add-review' bindtap='onTapAddReview'>写影评</view>
   </view>
 </view>
