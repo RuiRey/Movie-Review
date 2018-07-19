@@ -9,6 +9,7 @@ Page({
    */
   data: {
     reviewDetail: {},
+    reviewList:{},
     movieDetail:{},
     reviewId:"",
     movieId: "",
@@ -22,15 +23,28 @@ Page({
       wx.navigateTo({
         url: '/pages/user/user',
       })
-    } else {
+    } 
+    let reviewed = false
+    let reviewList = this.data.reviewList
+    let review = {}
+    for(let i = 0; i < reviewList.length; i++){
+      if (reviewList[i].user == userInfo.openId){
+        review = reviewList[i]
+        reviewed = true
+        break
+      }
+    }
+    if(reviewed){
+      wx.navigateTo({
+        url: '/pages/reviewDetail/reviewDetail?reviewId='+review.id+'&&movieId='+review.movie_id,
+      })
+    }else {
       wx.showActionSheet({
         itemList: ['文字', '音频'],
         success: function (res) {
           wx.navigateTo({
             url: '/pages/editReview/editReview?tapIndex=' + res.tapIndex + '&&movieId=' + movieId,
           })
-        },
-        fail: ()=> {
         }
       })
 
@@ -58,7 +72,9 @@ Page({
         let data = result.data
         if (!data.code) {
           let reviews = data.data
-
+          this.setData({
+            reviewList: reviews
+          })
           for (let i = 0; i < reviews.length; i++) {
             if (reviews[i].id == reviewId) {
               this.setData({

@@ -67,7 +67,7 @@ Page({
       this.setData({
         myReviewList: myReviewList
       })
-    }else{
+    }else if(index == 1){
       qcloud.request({
         url: config.service.collectedReviewList,
         success: result => {

@@ -52,7 +52,6 @@ Page({
       },
       complete: () => {
         wx.hideLoading();//loading 逻辑
-        console.log('here')
         callback && callback()
       }
     })
