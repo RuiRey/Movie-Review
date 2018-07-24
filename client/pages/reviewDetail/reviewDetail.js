@@ -1,6 +1,9 @@
 const qcloud = require('../../vendor/wafer2-client-sdk/index')
 const config = require('../../config.js')
 const app = getApp()
+
+const audioReview = wx.createInnerAudioContext();
+
 // pages/reviewDetail/reviewDetail.js
 Page({
 
@@ -14,6 +17,7 @@ Page({
     reviewId:"",
     movieId: "",
     userInfo: null,
+    isPlay:false,
   },
 
   onTapAddReview(e) {
@@ -81,6 +85,7 @@ Page({
                 reviewDetail: reviews[i],
                 reviewId: reviewId
               })
+              audioReview.src = reviews[i].audio
               break
             }
           }
@@ -196,38 +201,19 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
+  //播放
+  play: function () {
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+    audioReview.play();
+    console.log('start')
+    this.setData({ isPlay: true });
+    console.log(this.data.isPlay)
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  // 停止
+  stop: function () {
+    audioReview.stop();
+    console.log('stop')
+    this.setData({ isPlay: false });
+    console.log(this.data.isPlay)
   }
 })
