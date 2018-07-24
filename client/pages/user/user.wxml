@@ -24,7 +24,13 @@
         <image class='movie-image' src='{{movieList[item.movie_id-1].image}}' mode='scaleToFill'></image> 
         <view class='movie-info'>
           <view class='movie-title'>{{movieList[item.movie_id-1].title}}</view>
-          <view class='movie-review'>{{item.content}}</view>
+          <view class='movie-review' wx:if="{{item.content}}">{{item.content}}</view>
+          
+          <view wx:if='{{item.audio}}' class='audio-btn'>
+            <image class='audio-image' src='/images/audio.jpeg'></image>
+            <view class='audio-duration'>{{item.duration}} s</view>
+          </view>
+
           <view class='reviewer-info'>
             <image class='reviewer-head' src='{{item.avatar}}'></image>
             <view class='reviewer-name'>{{item.username}}</view>

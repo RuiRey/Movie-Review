@@ -15,9 +15,12 @@
       <view class='reviewer-name'>{{item.username}}</view>
     </view>  
     <view wx:if='{{item.content}}' class='review-content'>{{item.content}}</view>
+    <view wx:if='{{item.audio}}' class='audio-btn'>
+      <image class='audio-image' src='/images/audio.jpeg'></image>
+      <view class='audio-duration'>{{item.duration}} s</view>
+    </view>
   </navigator>
 </scroll-view>
-
 
 
 

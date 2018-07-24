@@ -69,3 +69,28 @@
   font-size: 28rpx;
   line-height: 40rpx;
 }
+
+.audio-btn{
+  height: 60rpx;
+  line-height: 60rpx;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.02);
+  border-radius: 13rpx;
+  width: 300rpx;
+  display: flex;
+  align-content: center;
+  margin-top: 20rpx;
+  margin-left: 180rpx;
+  background-color: WHITESMOKE;
+}
+.audio-image{
+  height: 40rpx;
+  width: 40rpx;
+  padding-top: 10rpx;
+  padding-left: 35rpx;
+  padding-right: 20rpx;
+}
+.audio-duration{
+  color: lightslategray;
+  font-size: 30rpx;
+}

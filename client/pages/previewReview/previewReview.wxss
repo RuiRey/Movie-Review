@@ -80,6 +80,7 @@
   margin: 50rpx auto 0 auto;
   display: flex;
   align-content: center;
+  background-color: WHITESMOKE;
 }
 .audio-image{
   height: 40rpx;
