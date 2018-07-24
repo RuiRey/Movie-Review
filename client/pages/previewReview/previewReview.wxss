@@ -69,3 +69,26 @@
   font-size: 28rpx;
   line-height: 40rpx;
 }
+
+.audio-btn{
+  height: 80rpx;
+  line-height: 80rpx;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2rpx 13rpx 5rpx rgba(0, 0, 0, 0.02);
+  border-radius: 13rpx;
+  width: 200rpx;
+  margin: 50rpx auto 0 auto;
+  display: flex;
+  align-content: center;
+}
+.audio-image{
+  height: 40rpx;
+  width: 40rpx;
+  padding-top: 20rpx;
+  padding-left: 35rpx;
+  padding-right: 20rpx;
+}
+.audio-duration{
+  color: lightslategray;
+  font-size: 30rpx;
+}

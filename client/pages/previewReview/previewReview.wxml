@@ -6,7 +6,11 @@
     <image class='user-head' src='{{userInfo.avatarUrl}}'></image>
     <view class='user-name'>{{userInfo.nickName}}的影评</view>
   </view>
-  <view class='movie-review'>{{reviewValue}}</view>
+  <view wx:if="{{reviewValue}}" class='movie-review'>{{reviewValue}}</view>
+  <view bindtap='playRecord' wx:if="{{audioDetail}}" class='audio-btn'>
+    <image class='audio-image' src='/images/audio.jpeg'></image>
+    <view class='audio-duration'>{{duration}} s</view>
+  </view>
   <view class='opr-cnt'>
     <view class='back-to-edit-review' bindtap='onTapEdit'>重新编辑</view>
     <view class='upload-review' bindtap='uploadReview'>发布影评</view>

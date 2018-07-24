@@ -10,8 +10,9 @@ module.exports = {
     let content = ctx.request.body.content || null
     let audio = ctx.request.body.audio || null
     let username = ctx.request.body.username
+    let duration = ctx.request.body.duration || null
 
-    await DB.query('INSERT INTO review(user, username, avatar, content, audio, movie_id) VALUES (?, ?, ?, ?, ?, ?)', [user, username, avatar, content, audio, movie_id])
+    await DB.query('INSERT INTO review(user, username, avatar, content, audio, duration, movie_id) VALUES (?, ?, ?, ?, ?, ?, ?)', [user, username, avatar, content, audio, duration, movie_id])
 
     ctx.state.data = {}
   },

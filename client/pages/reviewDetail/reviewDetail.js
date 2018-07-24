@@ -28,7 +28,7 @@ Page({
     let reviewList = this.data.reviewList
     let review = {}
     for(let i = 0; i < reviewList.length; i++){
-      if (reviewList[i].user == userInfo.openId){
+      if (reviewList[i].user == userInfo.openId && reviewList[i].movie_id == movieId){
         review = reviewList[i]
         reviewed = true
         break

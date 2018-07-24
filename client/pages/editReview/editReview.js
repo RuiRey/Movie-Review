@@ -1,6 +1,18 @@
 // pages/editReview/editReview.js
 const qcloud = require('../../vendor/wafer2-client-sdk/index')
 const config = require('../../config.js')
+
+//微信小程序新录音接口，录出来的是mp3
+const recorder = wx.getRecorderManager()
+const recoderOptions = {
+  duration: 60000,
+  sampleRate: 16000,
+  numberOfChannels: 1,
+  encodeBitRate: 96000,
+  format: 'mp3',
+  frameSize: 50
+}
+
 Page({
 
   /**
@@ -10,31 +22,10 @@ Page({
     movieDetail: {},
     reviewValue: '',
     tapIndex: "",
-  },
 
-  onInput(event) {
-    let reviewValue = this.data.reviewValue
-    this.setData({
-      reviewValue: event.detail.value.trim()
-    })
-  },
-  onTapFinishEdit(){
-    let reviewValue = this.data.reviewValue
-    let movieDetail = this.data.movieDetail
-    if(reviewValue.length <=0 ){
-      wx.showToast({
-        title: '请输入你的影评内容',
-        icon:'none',
-      })
-    }else{
-      try {//利用localStorage传递数据
-        wx.setStorageSync('reviewValue', this.data.reviewValue)
-      } catch (e) {
-      }  
-      wx.navigateTo({
-        url: '/pages/previewReview/previewReview?movieId=' + movieDetail.id,
-      })
-    }
+    isSpeaking: false,//是否正在说话
+    audioDetail: null
+
   },
 
   /**
@@ -45,11 +36,72 @@ Page({
     this.setData({
       tapIndex: options.tapIndex
     })
+
+    //onLoad中为录音接口注册两个回调函数，主要是onStop
+    recorder.onStart(() => {
+      console.log('recorder.onStart()...')
+    })
+    recorder.onStop((res) => {
+      console.log(res)
+      this.setData({
+        audioDetail: res
+      })
+      const { tempFilePath } = res
+      console.log('recorder.onStop() tempFilePath:' + tempFilePath)
+    })
   },
 
+  onInput(event) {
+    let reviewValue = this.data.reviewValue
+    this.setData({
+      reviewValue: event.detail.value.trim()
+    })
+  },
+
+  onTapFinishEdit(){
+    let reviewValue = this.data.reviewValue
+    let audioDetail = this.data.audioDetail
+    let movieDetail = this.data.movieDetail
+    if(reviewValue.length <=0 && !audioDetail){
+      wx.showToast({
+        title: '请输入你的影评内容',
+        icon:'none',
+      })
+    }else{
+      try {//利用localStorage传递数据
+        wx.setStorageSync('reviewValue', this.data.reviewValue)
+        wx.setStorageSync('audioDetail', this.data.audioDetail)
+      } catch (e) {
+      }  
+      wx.navigateTo({
+        url: '/pages/previewReview/previewReview?movieId=' + movieDetail.id,
+      })
+    }
+  },
+
+  
+
+  touchdown: function () {
+    console.log("recorder.start with" + recoderOptions)
+    //var _this = this;
+    //speaking.call(this);
+    this.setData({
+      isSpeaking: true
+    })
+    recorder.start(recoderOptions);
+  },
+  touchup: function () {
+    console.log("recorder.stop")
+    this.setData({
+      isSpeaking: false,
+    })
+    recorder.stop();
+  },
+
+  
   getMovieDetail(id) {
     wx.showLoading({
-      title: '数据加载中'
+      title: '电影数据加载中'
     })
 
     qcloud.request({
@@ -70,7 +122,7 @@ Page({
           }
         } else {
           wx.showToast({
-            title: '数据加载失败',
+            title: '电影数据加载失败',
             icon: 'none'
           })
         }
@@ -78,59 +130,11 @@ Page({
       fail: () => {
         wx.hideLoading()
         wx.showToast({
-          title: '数据加载失败',
+          title: '电影数据加载失败',
           icon: 'none'
         })
       }
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })

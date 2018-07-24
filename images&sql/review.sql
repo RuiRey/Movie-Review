@@ -11,6 +11,7 @@ CREATE TABLE `review` (
   `avatar` varchar(255) NOT NULL,
   `content` varchar(511) CHARACTER SET utf8 DEFAULT NULL,
   `audio` varchar(1023) DEFAULT NULL,
+  `duration` int(11) DEFAULT NULL,
   `movie_id` int(11) NOT NULL,
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -23,6 +23,8 @@ var config = {
         // 上传图片接口
         uploadUrl: `${host}/weapp/upload`,
 
+        uploadAudio: `${host}/weapp/uploadaudio`,
+
         //获取热门电影列表
         movieList: `${host}/weapp/movies`,
 
