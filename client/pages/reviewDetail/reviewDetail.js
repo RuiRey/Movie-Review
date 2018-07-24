@@ -20,14 +20,25 @@ Page({
     isPlay:false,
   },
 
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    this.getReviewDetail(options.reviewId)
+    this.getMovieDetail(options.movieId)
+  },
+
+  // 点击添加review
   onTapAddReview(e) {
     let userInfo = this.data.userInfo
     let movieId = this.data.movieId
-    if (!userInfo) {
+    if (!userInfo) {// 检查用户是否登陆
       wx.navigateTo({
         url: '/pages/user/user',
       })
     } 
+
+    // 检查用户是否已经评论过该电影
     let reviewed = false
     let reviewList = this.data.reviewList
     let review = {}
@@ -38,11 +49,11 @@ Page({
         break
       }
     }
-    if(reviewed){
+    if(reviewed){//评论过 跳转到影评详情页面
       wx.navigateTo({
         url: '/pages/reviewDetail/reviewDetail?reviewId='+review.id+'&&movieId='+review.movie_id,
       })
-    }else {
+    }else {// 添加影评
       wx.showActionSheet({
         itemList: ['文字', '音频'],
         success: function (res) {
@@ -55,14 +66,7 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    this.getReviewDetail(options.reviewId)
-    this.getMovieDetail(options.movieId)
-  },
-
+  // 获取影评详情
   getReviewDetail(reviewId) {
     wx.showLoading({
       title: '影评数据加载中'
@@ -106,6 +110,7 @@ Page({
     })
   },
 
+  //获取电影详情
   getMovieDetail(movieId) {
     wx.showLoading({
       title: '电影数据加载中'
@@ -145,6 +150,7 @@ Page({
     })
   },
 
+  // 收藏review
   onTapCollectReview(event) {
     let review_id = this.data.reviewId
 
@@ -182,13 +188,6 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
@@ -201,7 +200,7 @@ Page({
     })
   },
 
-  //播放
+  //播放review
   play: function () {
 
     audioReview.play();

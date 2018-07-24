@@ -51,6 +51,7 @@ Page({
     })
   },
 
+//监听textarea
   onInput(event) {
     let reviewValue = this.data.reviewValue
     this.setData({
@@ -58,6 +59,7 @@ Page({
     })
   },
 
+//提交影评 ==> 转到影评预览页面
   onTapFinishEdit(){
     let reviewValue = this.data.reviewValue
     let audioDetail = this.data.audioDetail
@@ -80,7 +82,7 @@ Page({
   },
 
   
-
+//录音
   touchdown: function () {
     console.log("recorder.start with" + recoderOptions)
     //var _this = this;

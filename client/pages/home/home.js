@@ -3,7 +3,6 @@ const config = require('../../config.js')
 
 // pages/home/home.js
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -25,6 +24,7 @@ Page({
     this.getRandomReview(() => wx.stopPullDownRefresh())
   },
 
+  // 随机获取热门电影的影评
   getRandomReview(callback) {
     qcloud.request({
       url: config.service.reviewList,
@@ -62,6 +62,7 @@ Page({
     })
   },
 
+  // 获取热门电影
   getHotMovie(){
     wx.showLoading({
       title:'电影数据加载中'

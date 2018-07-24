@@ -3,7 +3,6 @@ const config = require('../../config.js')
 const app = getApp()
 // pages/reviewList/reviewList.js
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -30,6 +29,7 @@ Page({
     this.getReviewList(optionsMovieId ,() => wx.stopPullDownRefresh())
   },
 
+  //获取影评列表
   getReviewList(movieId, callback) {
     wx.showLoading({
       title: '影评数据加载中'
@@ -75,6 +75,7 @@ Page({
     })
   },
 
+  //点击添加review
   onTapAddReview(e) {
     let userInfo = this.data.userInfo
     let movieId = this.data.movieId
@@ -92,15 +93,7 @@ Page({
         },
         fail:  () => {}
       })
-
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
   },
 
   /**
@@ -114,33 +107,5 @@ Page({
         })
       }
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
 })

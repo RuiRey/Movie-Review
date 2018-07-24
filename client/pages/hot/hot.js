@@ -21,6 +21,7 @@ Page({
     this.getMovieList(() => wx.stopPullDownRefresh())
   },
 
+  //获取电影列表
   getMovieList(callback) {
     wx.showLoading({
       title: '电影数据加载中'

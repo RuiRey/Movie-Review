@@ -26,6 +26,7 @@ Page({
       this.innerAudioContext = wx.createInnerAudioContext()
   },
 
+  // 获取电影详情
   getMovieDetail(id) {
     wx.showLoading({
       title: '电影数据加载中'
@@ -64,6 +65,7 @@ Page({
     })
   },
 
+  // 获取文字review
   getReviewValue(){
     let that = this
     wx.getStorage({
@@ -76,6 +78,7 @@ Page({
     })
   },
 
+  //获取音频review
   getAudioReview() {
     let that = this
     wx.getStorage({
@@ -93,6 +96,7 @@ Page({
     })
   },
 
+  // 播放录音
   playRecord: function () {
     var src = this.data.audioDetail.tempFilePath;
   
@@ -100,22 +104,16 @@ Page({
     this.innerAudioContext.play()
   },
 
+  
   onTapEdit(){
     wx.navigateBack()
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    app.checkSession({
+    app.checkSession({// 获取用户信息
       success: ({ userInfo }) => {
         this.setData({
           userInfo
@@ -124,9 +122,6 @@ Page({
     })
   },
 
-
-
-  
   //上传影评
   uploadReview(event) {
     let username = this.data.userInfo.nickName
@@ -140,7 +135,7 @@ Page({
       title: '正在发表评论'
     })
 
-    if (this.data.audioDetail){
+    if (this.data.audioDetail){// 录音影评上传
       this.uploadAudio(audioUrl =>{
         qcloud.request({
           url: config.service.uploadReview,
@@ -183,7 +178,7 @@ Page({
 
         })
       })
-    }else{
+    }else{//文字影评上传
       qcloud.request({
       url: config.service.uploadReview,
       login: true,
@@ -254,10 +249,5 @@ Page({
       }
       })
     }
-    
-    
   },
-
-
-
 })

@@ -3,7 +3,6 @@ const qcloud = require('../../vendor/wafer2-client-sdk/index')
 const config = require('../../config.js')
 // pages/user/user.js
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -23,6 +22,7 @@ Page({
     this.getReviewList()
   },
 
+  //获取电影列表
   getMovieList() {
     qcloud.request({
       url: config.service.movieList,
@@ -37,6 +37,7 @@ Page({
     })
   },
 
+  // 获取影评列表
   getReviewList() {
     qcloud.request({
       url: config.service.reviewList,
@@ -51,6 +52,7 @@ Page({
     })
   },
 
+  //获取我的影评列表
   getMyReviewList() {
 
     let myReviewList = []
@@ -92,6 +94,7 @@ Page({
     }
   },
 
+  //获取我收藏的影评列表
   getMyCollectedReviewList(){
     qcloud.request({
       url: config.service.collectedReviewList,
@@ -132,15 +135,6 @@ Page({
     })
   },
 
-  
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */
@@ -153,40 +147,5 @@ Page({
         this.getMyReviewList()
       }
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
 })
