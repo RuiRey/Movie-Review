@@ -3,7 +3,7 @@
 
 <view class='movie-title'>{{hotMovie.title}}</view>
 
-<navigator class='recommend-review' url='/pages/reviewDetail/reviewDetail?reviewId={{randomReview.id}}&&movieId={{randomReview.movie_id}}'>
+<navigator wx:if="{{randomReview}}" class='recommend-review' url='/pages/reviewDetail/reviewDetail?reviewId={{randomReview.id}}&&movieId={{randomReview.movie_id}}'>
     <image class='user-head' src='{{randomReview.avatar}}'></image>
     <view class='user-name'>{{randomReview.username}}给你推荐了一部电影</view>
 </navigator>

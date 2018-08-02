@@ -1,3 +1,4 @@
+//需要修改sql语句，实现跨表格查询，整理出myReviewList
 const app = getApp()
 const qcloud = require('../../vendor/wafer2-client-sdk/index')
 const config = require('../../config.js')
